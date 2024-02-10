@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Will You Be My Valentine?</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white; /* Change background color to white */
+    background-image: url('teddy.gif'); /* Image of the teddy bear */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center bottom calc(-2 * 50.7953px); /* Position the teddy bear 2 cm downwards */
+    background-size: auto 100px; /* Adjust the size of the teddy bear */
+  }
+  #valentine-container {
+    text-align: center;
+    margin-top: 100px;
+  }
+  .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold; /* Increase the boldness of the font */
+    text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; /* Add black outline */
+  }
+  #yes-btn {
+    background-color: #66ff66; /* Slightly less bright green */
+    color: white;
+  }
+  #no-btn {
+    background-color: #ff6666; /* Slightly less bright red */
+    color: white;
+  }
+  #yes-btn:hover {
+    font-size: 20px;
+  }
+</style>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  h1 {
+    font-family: 'Cedarville Cursive', cursive;
+    font-weight: normal;
+    font-size: 4em;
+  }
+  .heart {
+    position: absolute;
+    width: 50px; /* Decrease the size of the heart */
+    height: 45px; /* Decrease the size of the heart */
+    margin: 20px;
+    animation: heartFloat 10s linear infinite; /* Apply animation to heart elements */
+  }
+  .heart:before,
+  .heart:after {
+    position: absolute;
+    content: "";
+    left: 25px; /* Adjust the position of the heart */
+    top: 0;
+    width: 25px; /* Decrease the size of the heart */
+    height: 40px; /* Decrease the size of the heart */
+    background: #fc2e5a;
+    border-radius: 25px 25px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+  }
+  .heart:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+  }
+  /* Animation for heart floating */
+  @keyframes heartFloat {
+    0% {
+      transform: translateY(100vh); /* Start from the bottom of the viewport */
+    }
+    100% {
+      transform: translateY(-200vh); /* Move heart upwards */
+    }
+  }
+</style>
+</head>
+<body>
+<div id="valentine-container">
+  <h2> Hey Paruuuuu.....Will You Be My Valentine?</h2>
+  <button id="yes-btn" class="btn" onclick="showHeartExplosion()">Yes</button>
+  <button id="no-btn" class="btn" onclick="handleNoClick()">No</button>
+</div>
+
+<script>
+  let yesButtonFontSize = 16; // Initial font size of the "Yes" button
+  let noButtonTextIndex = 0; // Index to cycle through different messages for "No" button
+  const noButtonTexts = ["Please", "Please Please", "Are you sure?", "I will be very sad", "Pleeeaseeeeee", "Are you sure", "I will be very very sad", "Please, please" ,"please please please", "pleeaaaaaaaseee"]; // Array of different messages for "No" button
+
+  function showHeartExplosion() {
+    // Generate and append heart elements to the document body
+    for (let i = 0; i < 20; i++) { // Increase the number of hearts
+      createHeart();
+    }
+  }
+
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * window.innerWidth + 'px'; // Random X position
+    heart.style.top = Math.random() * window.innerHeight + 'px'; // Random Y position
+    document.body.appendChild(heart);
+  }
+
+  function handleNoClick() {
+    const noButton = document.getElementById('no-btn');
+    noButton.textContent = noButtonTexts[noButtonTextIndex]; // Set the next text for "No" button
+    noButtonTextIndex = (noButtonTextIndex + 1) % noButtonTexts.length; // Increment the index and loop back to 0 if exceeding array length
+    increaseYesSize(); // Increase the size of the "Yes" button
+  }
+
+  function increaseYesSize() {
+    // Increase the font size of the "Yes" button by a faster rate (16 pixels) each time it is called
+    yesButtonFontSize += 16;
+    document.getElementById('yes-btn').style.fontSize = yesButtonFontSize + 'px';
+  }
+</script>
+</body>
+</html>
